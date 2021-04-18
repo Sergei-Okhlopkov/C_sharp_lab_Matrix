@@ -1,0 +1,42 @@
+﻿<Window x:Class="Matrix.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Matrix"
+        mc:Ignorable="d"
+        Title="Перемножение Матриц Охлопков Сергей 3-46" Height="450" Width="800">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="1.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnCreate" Grid.Column="3" Grid.Row="2" FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Создать матрицы</Button>
+        <Button x:Name="btnSum" Grid.Column="3" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Сумма матриц</Button>
+        <Button x:Name="btnMult" Grid.Column="1" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Произведение матриц</Button>
+        <Button x:Name="btnGenerate" Grid.Column="5" Grid.Row="2"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Генерация значений</Button>
+        
+        <TextBox x:Name="txtSizeMatrix" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
+        <DataGrid x:Name="dgMatrixA" Grid.Column="1" Grid.Row="0" />
+        <DataGrid x:Name="dgMatrixB" Grid.Column="3" Grid.Row="0" />
+        <DataGrid x:Name="dgMatrixC" Grid.Column="5" Grid.Row="0" Visibility="Hidden"/>
+        
+        <TextBox Grid.Row="2" Grid.Column="0" TextWrapping="WrapWithOverflow" BorderThickness="0" FontWeight="Bold">Размерность матриц</TextBox>
+
+    </Grid>
+
+</Window>
