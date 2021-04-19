@@ -25,17 +25,19 @@
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="btnCreate" Grid.Column="3" Grid.Row="2" FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Создать матрицы</Button>
-        <Button x:Name="btnSum" Grid.Column="3" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Сумма матриц</Button>
-        <Button x:Name="btnMult" Grid.Column="1" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Произведение матриц</Button>
-        <Button x:Name="btnGenerate" Grid.Column="5" Grid.Row="2"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8"  >Генерация значений</Button>
-        
+        <Button x:Name="btnGenerate" Grid.Column="3" Grid.Row="2" FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnGenerate_Click"  >Генерация матриц</Button>
+        <Button x:Name="btnSum" Grid.Column="3" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSum_Click"  >Сумма матриц</Button>
+        <Button x:Name="btnMult" Grid.Column="1" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnMult_Click"  >Произведение матриц</Button>
+        <Button x:Name="btnSave" Grid.Column="5" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSave_Click"  >Сохранить матрицу С</Button>
+
         <TextBox x:Name="txtSizeMatrix" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
-        <DataGrid x:Name="dgMatrixA" Grid.Column="1" Grid.Row="0" />
-        <DataGrid x:Name="dgMatrixB" Grid.Column="3" Grid.Row="0" />
-        <DataGrid x:Name="dgMatrixC" Grid.Column="5" Grid.Row="0" Visibility="Hidden"/>
-        
+        <TextBox x:Name="txtTime" Grid.Row="2" Grid.Column="5" Background="#FFF61B1B" FontWeight="Bold"></TextBox>
+
         <TextBox Grid.Row="2" Grid.Column="0" TextWrapping="WrapWithOverflow" BorderThickness="0" FontWeight="Bold">Размерность матриц</TextBox>
+
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMatrixA" Background="#FFD9DA66"/>
+        <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtMatrixB" Background="#FF4D78DF"/>
+        <TextBox Grid.Row="0" Grid.Column="5" x:Name="txtMatrixS" Background="#FF95EA16"/>
 
     </Grid>
 
