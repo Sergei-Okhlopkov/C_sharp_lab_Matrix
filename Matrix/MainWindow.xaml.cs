@@ -27,12 +27,21 @@ namespace Matrix
             Gen();
         }
 
-        public void Gen()
+        //public -> private
+        private void Gen()
         {
-            A = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
-            txtMatrixA.Text = A.Print(A);
-            B = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
-            txtMatrixB.Text = B.Print(B);
+            if (txtSizeMatrix.Text == string.Empty) // adding cheking for empty text
+            {
+                MessageBox.Show("There are not any values here");
+            }
+            else
+            {
+                A = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
+                txtMatrixA.Text = A.Print();
+                B = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
+                txtMatrixB.Text = B.Print();
+            }
+            
 
         }
 
@@ -55,7 +64,7 @@ namespace Matrix
         public void Sum()
         {
             S = A + B;
-            txtMatrixS.Text = S.Print(S);
+            txtMatrixS.Text = S.Print();
         }
 
         private void btnMult_Click(object sender, RoutedEventArgs e)
@@ -76,7 +85,7 @@ namespace Matrix
         public void Multiplication()
         {
             S = A * B;
-            txtMatrixS.Text = S.Print(S);
+            txtMatrixS.Text = S.Print();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

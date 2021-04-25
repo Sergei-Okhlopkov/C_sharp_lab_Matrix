@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Text;
 
 namespace Matrix
 {
-    public class MatrixClass<T>
+    public class MatrixClass<T> // adding a restriction
+        where T: struct
     {
 
         int N;
@@ -12,6 +14,13 @@ namespace Matrix
 
         public MatrixClass(int N)
         {
+            //adding cheking of a type
+            if (typeof(T) != typeof(int) && typeof(T) != typeof(double) && typeof(T) != typeof(float))
+            {
+                throw new ArgumentException($"<T> can be only int, double, float for GenericMatrix<T>");
+            }
+            // if N < 0 throw an exception
+            IsNatural(N);
             this.N = N;
             this.mas = new T[N, N];
             this.mas = this.Generate(generate, N);//используем делегат тут
@@ -19,15 +28,9 @@ namespace Matrix
 
         public T this[int i, int j]//индексатор
         {
-            get
-            {
-                return mas[i, j];
-            }
-
-            set
-            {
-                mas[i, j] = value;
-            }
+            // a full body can be changed to =>
+            get => mas[i, j];
+            set => mas[i, j] = value;
         }
 
         public T[,] Generate(Func<int, int, T[,]> generate, int N)
@@ -43,12 +46,15 @@ namespace Matrix
             {
                 for (int m = 0; m < j; m++)
                 {
-                    cMas[l, m] = (dynamic)rand.Next(-11, 11);
+                    cMas[l, m] = (dynamic)rand.Next(-15, 11);
                 }
             }
             return cMas;
         }
-
+        private bool IsNatural(int value)
+        {
+            return (value > 0) ? true : throw new ArgumentException("Value can't be equal to 0 or less value");
+        }
 
         public static MatrixClass<T> operator +(MatrixClass<T> one, MatrixClass<T> two)
         {
@@ -65,6 +71,7 @@ namespace Matrix
 
         public static MatrixClass<T> operator *(MatrixClass<T> one, MatrixClass<T> two)
         {
+
             MatrixClass<T> mat = new MatrixClass<T>(one.N);
 
             for (int i = 0; i < mat.N; i++)
@@ -82,17 +89,25 @@ namespace Matrix
             return mat;
         }
 
-        public string Print(MatrixClass<T> matrix)
+        //using this.N instead of matrix.N (No argument)
+        public string Print()
         {
             string outmas = null;
 
-            for (int i = 0; i < matrix.N; i++)
+            for (int i = 0; i < this.N; i++)
             {
-                for (int j = 0; j < matrix.N; j++)
+                bool f = false;
+                for (int j = 0; j < this.N; j++)
                 {
-                    outmas += Convert.ToString(matrix[i, j]) + " ";
+                    if (f)
+                    {
+                        outmas += " ";
+                    }
+                    outmas+= (Convert.ToString(this[i, j]));
+                    f = true;
                 }
-                outmas+="\n";
+                outmas += "\n";
+                //outmas+="\n";
             }
 
 
