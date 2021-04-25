@@ -9,11 +9,7 @@ namespace Matrix
 
         int N;
         T[,] mas;
-        static Random rand = new Random();
-
-
-
-
+        
         public MatrixClass(int N)
         {
             //adding cheking of a type
@@ -40,19 +36,7 @@ namespace Matrix
             this.mas = generate(N, N);
             return this.mas;
         }
-        public static T[,] Fill(int i, int j)
-        {
-            T[,] cMas = new T[i, j];
-            
-            for (int l = 0; l < i; l++)
-            {
-                for (int m = 0; m < j; m++)
-                {
-                    cMas[l, m] = (dynamic)rand.Next(-15, 11);
-                }
-            }
-            return cMas;
-        }
+      
         private bool IsNatural(int value)
         {
             return (value > 0) ? true : throw new ArgumentException("Value can't be equal to 0 or less value");
@@ -109,7 +93,7 @@ namespace Matrix
                     f = true;
                 }
                 outmas += "\n";
-                //outmas+="\n";
+               
             }
 
 

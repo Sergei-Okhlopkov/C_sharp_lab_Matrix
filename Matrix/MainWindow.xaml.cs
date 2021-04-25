@@ -14,15 +14,29 @@ namespace Matrix
         public MainWindow()
         {
             InitializeComponent();
-           
+
         }
 
         MatrixClass<int> A;
         MatrixClass<int> B;
         MatrixClass<int> S;
         Stopwatch sw = new Stopwatch();
+        static Random rand = new Random();
 
-        Func<int, int, int[,]> generate = MatrixClass<int>.Fill;//делегат
+        Func<int, int, int[,]> generate = (i, j) => {
+            int[,] cMas = new int[i, j];
+
+            for (int l = 0; l < i; l++)
+            {
+                for (int m = 0; m < j; m++)
+                {
+                    cMas[l, m] = (dynamic)rand.Next(-15, 11);
+                }
+            }
+            return cMas;
+        };//делегат
+
+
 
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
@@ -39,21 +53,23 @@ namespace Matrix
             else
             {
                 int N = Convert.ToInt32(txtSizeMatrix.Text);
+                
+
 
                 A = new MatrixClass<int>(N);
-                A.Generate(generate,N);
+                A.Generate(generate, N);
                 txtMatrixA.Text = A.Print();
                 B = new MatrixClass<int>(N);
                 B.Generate(generate, N);
                 txtMatrixB.Text = B.Print();
             }
-            
+
 
         }
 
         private void btnSum_Click(object sender, RoutedEventArgs e)
         {
-            
+
             sw.Start();
 
             Sum();
@@ -81,7 +97,7 @@ namespace Matrix
 
             sw.Stop();
             TimeSpan ts = sw.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}",
+            string elapsedTime = String.Format("{0:00}:{1:00000}",
            ts.Seconds,
             ts.Milliseconds / 10);
             txtTime.Text = elapsedTime;
