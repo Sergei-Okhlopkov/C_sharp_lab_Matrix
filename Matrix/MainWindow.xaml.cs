@@ -93,7 +93,7 @@ namespace Matrix
             SaveToFile(txtMatrixS.Text);
         }
 
-        public void SaveToFile(string text)
+        private void SaveToFile(string text)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Comma-Separated Values|*.csv";

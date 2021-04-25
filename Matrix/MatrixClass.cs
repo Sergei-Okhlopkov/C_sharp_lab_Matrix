@@ -4,7 +4,7 @@ using System.Text;
 namespace Matrix
 {
     public class MatrixClass<T> // adding a restriction
-        where T: struct
+        where T : struct
     {
 
         int N;
@@ -17,7 +17,7 @@ namespace Matrix
             //adding cheking of a type
             if (typeof(T) != typeof(int) && typeof(T) != typeof(double) && typeof(T) != typeof(float))
             {
-                throw new ArgumentException($"<T> can be only int, double, float for GenericMatrix<T>");
+                throw new ArgumentException($"<T> can be only int, double, float for MatrixClass<T>");
             }
             // if N < 0 throw an exception
             IsNatural(N);
@@ -103,7 +103,7 @@ namespace Matrix
                     {
                         outmas += " ";
                     }
-                    outmas+= (Convert.ToString(this[i, j]));
+                    outmas += (Convert.ToString(this[i, j]));
                     f = true;
                 }
                 outmas += "\n";
