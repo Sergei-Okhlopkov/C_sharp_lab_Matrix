@@ -22,6 +22,8 @@ namespace Matrix
         MatrixClass<int> S;
         Stopwatch sw = new Stopwatch();
 
+        Func<int, int, int[,]> generate = MatrixClass<int>.Fill;//делегат
+
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
             Gen();
@@ -36,9 +38,13 @@ namespace Matrix
             }
             else
             {
-                A = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
+                int N = Convert.ToInt32(txtSizeMatrix.Text);
+
+                A = new MatrixClass<int>(N);
+                A.Generate(generate,N);
                 txtMatrixA.Text = A.Print();
-                B = new MatrixClass<int>(Convert.ToInt32(txtSizeMatrix.Text));
+                B = new MatrixClass<int>(N);
+                B.Generate(generate, N);
                 txtMatrixB.Text = B.Print();
             }
             

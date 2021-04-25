@@ -9,8 +9,10 @@ namespace Matrix
 
         int N;
         T[,] mas;
+        static Random rand = new Random();
 
-        Func<int, int, T[,]> generate = Fill;//делегат
+
+
 
         public MatrixClass(int N)
         {
@@ -23,7 +25,7 @@ namespace Matrix
             IsNatural(N);
             this.N = N;
             this.mas = new T[N, N];
-            this.mas = this.Generate(generate, N);//используем делегат тут
+           // this.mas = this.Generate(generate, N);
         }
 
         public T this[int i, int j]//индексатор
@@ -41,7 +43,7 @@ namespace Matrix
         public static T[,] Fill(int i, int j)
         {
             T[,] cMas = new T[i, j];
-            var rand = new Random();
+            
             for (int l = 0; l < i; l++)
             {
                 for (int m = 0; m < j; m++)
