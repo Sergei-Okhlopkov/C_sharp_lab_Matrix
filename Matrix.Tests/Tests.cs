@@ -13,67 +13,37 @@ namespace Matrix.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void CheckingTypeOfMatrices()
         {
-            MatrixClass<char> genericMatrix = new MatrixClass<char>(5);
-            MatrixClass<bool> genericMatrix2 = new MatrixClass<bool>(5);
+            MatrixClass<char> genericMatrix = new MatrixClass<char>(5, 5);
+            MatrixClass<bool> genericMatrix2 = new MatrixClass<bool>(5, 5);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void NegativeN()
         {
-            int n = -5;
-            MatrixClass<int> one = new MatrixClass<int>(n);
-            MatrixClass<int> two = new MatrixClass<int>(n);
+            int row = -3, col = 2;
+            MatrixClass<int> one = new MatrixClass<int>(row, col);
+            MatrixClass<int> two = new MatrixClass<int>(row, col);
         }
 
+
+
         [TestMethod]
-        public void TimeIsMeasuredCorrectly()
+        [ExpectedException(typeof(ArgumentException))]
+        public void SummDifferentRowsAndColumns()
         {
-
-            Random rand = new Random();
-
-            Func<int, int, int[,]> generate = (i, j) => {
-                int[,] cMas = new int[i, j];
-
-                for (int l = 0; l < i; l++)
-                {
-                    for (int m = 0; m < j; m++)
-                    {
-                        cMas[l, m] = i+j;
-                    }
-                }
-                return cMas;
-            };//делегат
-
-            int n = 3;
-            MatrixClass<int> A = new MatrixClass<int>(n);
-            MatrixClass<int> B = new MatrixClass<int>(n);
-            MatrixClass<int> C = new MatrixClass<int>(n);
-            Stopwatch sw = new Stopwatch();
-
-            A.Generate(generate, n);
-            B.Generate(generate, n);
-
-            sw.Start();
-            C = A * B;
-            sw.Stop();
-
-            TimeSpan ts = sw.Elapsed;
-            double result = ts.Milliseconds / 1000;
-            double expected = 0.0001;
-            Assert.AreEqual(result,expected,0.0001);
-
-
-
-
+            MatrixClass<int> one = new MatrixClass<int>(6, 3);
+            MatrixClass<int> two = new MatrixClass<int>(3, 6);
+            MatrixClass<int> three;
+            three = one + two;
         }
 
         [TestMethod]
         public void SumTwoMatrisces()
         {
             int n = 4;
-            MatrixClass<int> one = new MatrixClass<int>(n);
-            MatrixClass<int> two = new MatrixClass<int>(n);
+            MatrixClass<int> one = new MatrixClass<int>(n, n);
+            MatrixClass<int> two = new MatrixClass<int>(n, n);
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
@@ -111,8 +81,8 @@ namespace Matrix.Tests
         public void MultiplyTwoMatrisces()
         {
             int n = 4;
-            MatrixClass<int> one = new MatrixClass<int>(n);
-            MatrixClass<int> two = new MatrixClass<int>(n);
+            MatrixClass<int> one = new MatrixClass<int>(n, n);
+            MatrixClass<int> two = new MatrixClass<int>(n, n);
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)

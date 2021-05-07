@@ -8,7 +8,7 @@
         Title="Перемножение Матриц Охлопков Сергей 3-46" Height="450" Width="800">
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
             <ColumnDefinition Width="1.1*"></ColumnDefinition>
             <ColumnDefinition Width="0.1*"></ColumnDefinition>
             <ColumnDefinition Width="1.1*"></ColumnDefinition>
@@ -26,18 +26,57 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button x:Name="btnGenerate" Grid.Column="3" Grid.Row="2" FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnGenerate_Click"  >Генерация матриц</Button>
-        <Button x:Name="btnSum" Grid.Column="3" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSum_Click"  >Сумма матриц</Button>
-        <Button x:Name="btnMult" Grid.Column="1" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnMult_Click"  >Произведение матриц</Button>
-        <Button x:Name="btnSave" Grid.Column="5" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSave_Click"  >Сохранить матрицу С</Button>
+        <Button x:Name="btnSum" Grid.Column="1" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSum_Click"  >Сумма матриц</Button>
+        <Button x:Name="btnMult" Grid.Column="1" Grid.Row="2"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnMult_Click"  >Произведение матриц</Button>
+        <Button x:Name="btnSave" Grid.Column="3" Grid.Row="4"  FontWeight="Bold" FontSize="16" Foreground="#FF1E47B7" Background="#FF33C5C8" Click="btnSave_Click"  >Сохранить матрицу С</Button>
 
-        <TextBox x:Name="txtSizeMatrix" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>
+        <!--<TextBox x:Name="txtSizeMatrix" Grid.Row="2" Grid.Column="1" Margin="5"></TextBox>-->
         <TextBox x:Name="txtTime" Grid.Row="2" Grid.Column="5" Background="#FFF61B1B" FontWeight="Bold"></TextBox>
 
-        <TextBox Grid.Row="2" Grid.Column="0" TextWrapping="WrapWithOverflow" BorderThickness="0" FontWeight="Bold">Размерность матриц</TextBox>
+        <!--<TextBox Grid.Row="2" Grid.Column="0" TextWrapping="WrapWithOverflow" BorderThickness="0" FontWeight="Bold">Размерность матриц</TextBox>-->
 
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMatrixA" Background="#FFD9DA66"/>
         <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtMatrixB" Background="#FF4D78DF"/>
         <TextBox Grid.Row="0" Grid.Column="5" x:Name="txtMatrixS" Background="#FF95EA16"/>
+
+        <StackPanel>
+            <TextBlock>1 Матрица ряды</TextBlock>
+            <ComboBox x:Name="firstMatrixRows" >
+                <ComboBoxItem IsSelected="True">5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+            <TextBlock>1 Матрица колонки</TextBlock>
+            <ComboBox x:Name="firstMatrixColumns" >
+                <ComboBoxItem IsSelected="True">5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+            <TextBlock>2 Матрица ряды</TextBlock>
+            <ComboBox x:Name="seckondMatrixRows" >
+                <ComboBoxItem IsSelected="True">5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+            <TextBlock>2 Матрица колонки</TextBlock>
+            <ComboBox x:Name="secondMatrixColumns" >
+                <ComboBoxItem IsSelected="True">5</ComboBoxItem>
+                <ComboBoxItem>6</ComboBoxItem>
+                <ComboBoxItem>7</ComboBoxItem>
+                <ComboBoxItem>8</ComboBoxItem>
+                <ComboBoxItem>9</ComboBoxItem>
+                <ComboBoxItem>10</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
 
     </Grid>
 

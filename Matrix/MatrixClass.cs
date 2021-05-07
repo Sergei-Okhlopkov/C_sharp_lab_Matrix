@@ -7,10 +7,10 @@ namespace Matrix
         where T : struct
     {
 
-        int N;
+        int Ncol, Nrow;
         T[,] mas;
-        
-        public MatrixClass(int N)
+
+        public MatrixClass(int row, int col)
         {
             //adding cheking of a type
             if (typeof(T) != typeof(int) && typeof(T) != typeof(double) && typeof(T) != typeof(float))
@@ -18,25 +18,27 @@ namespace Matrix
                 throw new ArgumentException($"<T> can be only int, double, float for MatrixClass<T>");
             }
             // if N < 0 throw an exception
-            IsNatural(N);
-            this.N = N;
-            this.mas = new T[N, N];
-           // this.mas = this.Generate(generate, N);
+            IsNatural(col);
+            IsNatural(row);
+            this.Ncol = col;
+            this.Nrow = row;
+            this.mas = new T[row, col];
+            // this.mas = this.Generate(generate, N);
         }
 
-        public T this[int i, int j]//индексатор
+        public T this[int row, int col]//индексатор
         {
             // a full body can be changed to =>
-            get => mas[i, j];
-            set => mas[i, j] = value;
+            get => mas[row, col];
+            set => mas[row, col] = value;
         }
 
-        public T[,] Generate(Func<int, int, T[,]> generate, int N)
+        public T[,] Generate(Func<int, int, T[,]> generate, int row, int col)
         {
-            this.mas = generate(N, N);
+            this.mas = generate(row, col);
             return this.mas;
         }
-      
+
         private bool IsNatural(int value)
         {
             return (value > 0) ? true : throw new ArgumentException("Value can't be equal to 0 or less value");
@@ -44,10 +46,15 @@ namespace Matrix
 
         public static MatrixClass<T> operator +(MatrixClass<T> one, MatrixClass<T> two)
         {
-            MatrixClass<T> mat = new MatrixClass<T>(one.N);
-            for (int i = 0; i < mat.N; i++)
+            if (one.Ncol!=two.Ncol || one.Nrow!=two.Nrow)
             {
-                for (int j = 0; j < mat.N; j++)
+                throw new ArgumentException("Matrices can't be sum. The number of columns and rows of the first matrix must be equal to the number of columns and rows of the second");
+            }
+
+            MatrixClass<T> mat = new MatrixClass<T>(one.Ncol, one.Nrow);
+            for (int i = 0; i < one.Nrow; i++)
+            {
+                for (int j = 0; j < one.Ncol; j++)
                 {
                     mat[i, j] = (dynamic)one[i, j] + two[i, j];
                 }
@@ -58,14 +65,14 @@ namespace Matrix
         public static MatrixClass<T> operator *(MatrixClass<T> one, MatrixClass<T> two)
         {
 
-            MatrixClass<T> mat = new MatrixClass<T>(one.N);
+            MatrixClass<T> mat = new MatrixClass<T>(one.Ncol, one.Nrow);
 
-            for (int i = 0; i < mat.N; i++)
+            for (int i = 0; i < one.Nrow; i++)
             {
-                for (int j = 0; j < mat.N; j++)
+                for (int j = 0; j < two.Ncol; j++)
                 {
                     mat[i, j] = (dynamic)0;
-                    for (int k = 0; k < mat.N; k++)
+                    for (int k = 0; k < two.Nrow; k++)
                     {
                         mat[i, j] += (dynamic)one[i, k] * two[k, j];
                     }
@@ -80,10 +87,10 @@ namespace Matrix
         {
             string outmas = null;
 
-            for (int i = 0; i < this.N; i++)
+            for (int i = 0; i < this.Nrow; i++)
             {
                 bool f = false;
-                for (int j = 0; j < this.N; j++)
+                for (int j = 0; j < this.Ncol; j++)
                 {
                     if (f)
                     {
@@ -93,7 +100,7 @@ namespace Matrix
                     f = true;
                 }
                 outmas += "\n";
-               
+
             }
 
 

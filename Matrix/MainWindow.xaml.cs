@@ -22,8 +22,13 @@ namespace Matrix
         MatrixClass<int> S;
         Stopwatch sw = new Stopwatch();
         static Random rand = new Random();
+        int row1;
+        int row2;
+        int col1;
+        int col2;
 
-        Func<int, int, int[,]> generate = (i, j) => {
+        Func<int, int, int[,]> generate = (i, j) =>
+        {
             int[,] cMas = new int[i, j];
 
             for (int l = 0; l < i; l++)
@@ -46,29 +51,35 @@ namespace Matrix
         //public -> private
         private void Gen()
         {
-            if (txtSizeMatrix.Text == string.Empty) // adding cheking for empty text
-            {
-                MessageBox.Show("There are not any values here");
-            }
-            else
-            {
-                int N = Convert.ToInt32(txtSizeMatrix.Text);
-                
 
 
-                A = new MatrixClass<int>(N);
-                A.Generate(generate, N);
-                txtMatrixA.Text = A.Print();
-                B = new MatrixClass<int>(N);
-                B.Generate(generate, N);
-                txtMatrixB.Text = B.Print();
-            }
+            row1 = Convert.ToInt32(firstMatrixRows.Text);
+            row2 = Convert.ToInt32(seckondMatrixRows.Text);
+            col1 = Convert.ToInt32(firstMatrixColumns.Text);
+            col2 = Convert.ToInt32(secondMatrixColumns.Text);
+
+
+
+            A = new MatrixClass<int>(row1, col1);
+            A.Generate(generate, row1, col1);
+            txtMatrixA.Text = A.Print();
+            B = new MatrixClass<int>(row2, col2);
+            B.Generate(generate, row2, col2);
+            txtMatrixB.Text = B.Print();
+
 
 
         }
 
         private void btnSum_Click(object sender, RoutedEventArgs e)
         {
+            if (col1 != col2 || row1 != row2)
+            {
+                MessageBox.Show("Columns and rows are not right!");
+                throw new ArgumentException("Matrices can't be summed. The number of columns and rows of the first matrix must be equal to the number of columns and rows of the second");
+               // return;
+
+            }
 
             sw.Start();
 
@@ -91,6 +102,14 @@ namespace Matrix
 
         private void btnMult_Click(object sender, RoutedEventArgs e)
         {
+            if (col1 != row2)
+            {
+                MessageBox.Show("Columns from matrix 1 are not shure to rows from matrix 2!!!");
+                return;
+
+            }
+
+
             sw.Start();
 
             Multiplication();
